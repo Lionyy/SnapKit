@@ -79,17 +79,16 @@ internal func ==(lhs: LayoutConstraint, rhs: LayoutConstraint) -> Bool {
         
     } else {
         // Fallback on earlier versions
-        let areLayoutAnchorsEqual: Bool
         
-        areLayoutAnchorsEqual = lhs.firstItem === rhs.firstItem &&
+        guard lhs.firstItem === rhs.firstItem &&
             lhs.secondItem === rhs.secondItem &&
             lhs.firstAttribute == rhs.firstAttribute &&
-            lhs.secondAttribute == rhs.secondAttribute
-        
-        return areLayoutAnchorsEqual &&
+            lhs.secondAttribute == rhs.secondAttribute &&
             lhs.relation == rhs.relation &&
             lhs.priority == rhs.priority &&
-            lhs.multiplier == rhs.multiplier
+            lhs.multiplier == rhs.multiplier else {
+                return false
+        }
 
     }
 
